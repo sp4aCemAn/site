@@ -16,7 +16,7 @@ A personal site where the whole interface is one measured monospace character gr
 - Editor:
   [Neovim](https://neovim.io),
   [nvim config](https://github.com/sp4acemanwork/nvimConfig),
-  [nvimterminals](https://github.com/sp4aCemAn/nvimterminals)
+  [nvimterminals](https://github.com/sp4aCemAn/nvimterminals),
   [nvimcp](https://github.com/sp4aCemAn/nvimcp) and,
   [opencode](https://opencode.ai)
 
