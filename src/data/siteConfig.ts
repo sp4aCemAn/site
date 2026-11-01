@@ -49,7 +49,7 @@ export const site = {
 };
 
 export const socials: Socials = {
-  email: "you@example.com",
+  email: "jamesshufeltiii@gmail.com",
   githubUrl: "",
   twitterUrl: "",
   linkedinUrl: "",
