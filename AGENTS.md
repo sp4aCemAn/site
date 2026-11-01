@@ -27,6 +27,7 @@ There is no route configurator — routes are plain files in `src/app/` that rea
   - `text/gridEmbed.tsx` — a real web canvas (YouTube/Vimeo iframe or image) inside a painted box.
   - `text/markdownGrid.ts` + `text/markdownFlow.tsx` — the site's own markdown reader: blocks are measured into cell rows (`flowHeight`) and painted by the components above. Grammar and non-goals are documented in `docs/lms/markdown-rendering.md`; there is deliberately no HTML renderer in the tree.
   - `rainScreen/textScreen.tsx` (screen shell + title), `screenControls.tsx` (`MENU`/`CLOSE`, with the nav, social and `RAIN ON`/`OFF` rows inside it — the rain toggle is hidden until the menu opens), `screenBody.tsx` (prose, then embeds flowing below it).
+- **Indexing**: the site asks crawlers to stay away — `src/app/robots.ts` disallows every path, `layout.tsx` sets `robots: { index: false, follow: false }` so every document carries `noindex, nofollow`, and `src/app/sitemap.ts` still emits `/sitemap.xml` (both metadata routes need `export const dynamic = "force-static"` under `output: 'export'`). Sitemap URLs are absolute, built from `NEXT_PUBLIC_SITE_URL` + `NEXT_PUBLIC_BASE_PATH`, so a Pages project site is built with `NEXT_PUBLIC_BASE_PATH=/site`.
 - **Persisted state**: the rain on/off choice is kept in `localStorage` under `textscreen.rain` (see `readRain`/`writeRain` in `rainScreen.tsx`), because a static export has no server to read a cookie; it is read lazily with a `typeof window` guard so the prerendered HTML stays deterministic, and a `storage` listener keeps other tabs in step.
 - **Scrolling**: the surface sizes itself to `max(window rows, reserved + footer)`. Top-anchored regions pass `reserve` (rows they need from the top) and bottom-anchored groups report their footprint through `reserveFooter(id, rows)`; `RainScreen` then sets the host's inline height to `rows * lineHeight`, so a screen with more content than fits grows its canvas and the document scrolls instead of clipping. Never read `window` during render for this — the prerendered HTML must match the first client render or React leaves a stale inline height in place (measure in an effect and keep the pre-measure state covered by `min-h-[100svh]`).
 - **Grid primitives**: `src/components/text/monoGrid.ts` — `MONO` stack (kept in sync with `--font-sans` in `globals.css`), `measureMonoWidth`/`useMonoMetrics` (pretext measurement defines cols) and `useViewportRows` (defines the windowful), `Cell`, `ringCells`/`writeCells`, and `inkClass` — quantized greyscale via `.pt-i1`…`.pt-i40` in `globals.css`.
@@ -41,7 +42,7 @@ There is no route configurator — routes are plain files in `src/app/` that rea
 
 ## Key Commands
 - **Dev**: `npm run dev` (Docker: `make run`, i.e. `docker compose up`)
-- **Build**: `npm run build`
+- **Build**: `npm run build` (for Pages: `NEXT_PUBLIC_BASE_PATH=/site NEXT_PUBLIC_SITE_URL=https://<user>.github.io npm run build`)
 - **Lint**: `npm run lint`
 - **Install**: `npm install`
 - **Docker dev**: `make run` (`docker compose up`) — recreate volumes after dep/CSS changes: `make down`

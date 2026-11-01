@@ -78,30 +78,24 @@ export const newsScreen: ScreenContent = {
 export const projectsScreen: ScreenContent = {
   title: "Projects",
   blurb: [
-    "## Things I have built and shipped",
-    "Replace this with your own work. A heading like the one above is a `##`; a single `#` would come out in the big glyph font instead.",
-    "- nvterminals — terminal buffers as Neovim buffers, with an agent-facing MCP surface around them",
-    "- site — this screen: rain, headings, buttons and prose in one measured grid",
-    "> Quote blocks get a rail down the left so they read apart from the body text.",
-    "```\nnpm run dev      # http://localhost:3000\nmake run         # same thing, in Docker\n```",
-    "![Project screenshot](/image3.jpg \"40x12\")",
-    "Read the [build log](/news/text-screen) or the [pretext source](https://github.com/chenglou/pretext)."
+    "## still in progress..."
+
   ]
 };
 
 export const coolStuffScreen: ScreenContent = {
   title: "Cool Stuff",
   blurb: [
-    "## Links, videos and oddments",
-    "A video link on its own line becomes an embedded player box:",
+    "## heres some cool stuff",
+    "tool music video",
     "[ TOOL - Schism (Official Video) ](https://www.youtube.com/watch?v=MM62wjLrgmA)",
-    "1. Boxes are real links and real iframes\n2. Nothing here is an image of text\n3. The rain just routes around them",
-    "## Type big letters",
-    "The banners on this site are FIGlet fonts, which have been making text out of text since 1991 — grab the program, the JS port our glyphs came from, or just play with the generator:",
+    "Still deciding what to put here\n",
+    "# isint this cool",
+    "been playing around with ascii art heres some cool stuff i found to mess around with all ascii art related",
     "[FIGlet](https://www.figlet.org/)",
     "[figlet.js](https://github.com/patorjk/figlet.js)",
     "[TAAG](https://patorjk.com/software/taag/)",
-    "See the [news list](/news) for the writing."
+    "[news](/news)"
   ]
 };
 
