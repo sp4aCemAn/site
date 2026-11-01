@@ -1,0 +1,22 @@
+services:
+  # THIS IS FOR PODMAN
+  # 🛠️ DEV SERVICE  
+  dev:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: dependencies
+    working_dir: /app
+    
+    command: npm run dev
+    
+    # 👇 1. Map your host user ID to the container
+    userns_mode: "keep-id" 
+
+    volumes:
+      # 👇 2. Add the ':z' flag to the end of the host mount
+      - .:/app:z
+      - /app/node_modules
+      
+    ports:
+      - "3000:3000"

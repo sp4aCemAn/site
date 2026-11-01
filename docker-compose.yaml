@@ -1,0 +1,20 @@
+services:
+  # 🛠️ DEV SERVICE
+  dev:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: dependencies
+    container_name: testnextjsimage 
+    working_dir: /app
+
+    
+    command: npm run dev
+    
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+      
+    ports:
+      - "3000:3000"
