@@ -48,8 +48,9 @@ function LinkLine({
 
 /**
  * The controls every screen carries: `MENU` opens and closes the nav and social
- * rows, `RAIN ON` / `RAIN OFF` toggles the simulation. They also reserve the
- * rows they occupy, so flowing content stops above them.
+ * rows, and the `RAIN ON` / `RAIN OFF` toggle lives inside that menu, so a
+ * closed screen shows only `MENU`. Groups reserve the rows they occupy, so
+ * flowing content stops above them.
  */
 export default function ScreenControls({
   nav,
@@ -95,17 +96,19 @@ export default function ScreenControls({
         pad={PAD}
         onClick={() => setMenuOpen((open) => !open)}
       />
-      <TextButton
-        id="rain"
-        label={rainLabel}
-        col={rightCol}
-        row={1}
-        anchor="bottom"
-        pad={PAD}
-        onClick={toggleRain}
-      />
       {menuOpen ? (
         <>
+          {/* The rain toggle lives inside the menu, so a closed screen shows
+              nothing but MENU. */}
+          <TextButton
+            id="rain"
+            label={rainLabel}
+            col={rightCol}
+            row={1}
+            anchor="bottom"
+            pad={PAD}
+            onClick={toggleRain}
+          />
           {navLines.map((slots, lineIndex) => (
             <LinkLine
               key={`nav-${lineIndex}`}

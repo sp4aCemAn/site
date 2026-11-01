@@ -86,6 +86,29 @@ const RainRow = memo(function RainRow({
   )
 })
 
+/**
+ * Rain on/off is the one piece of visitor state worth keeping, and a static
+ * export has no server to read a cookie — so it lives in `localStorage`, which
+ * is per-origin and therefore survives moving between screens.
+ */
+const RAIN_KEY = 'textscreen.rain'
+
+function readRain(): boolean {
+  try {
+    return window.localStorage.getItem(RAIN_KEY) !== 'off'
+  } catch {
+    return true // private mode or storage disabled: just default to raining
+  }
+}
+
+function writeRain(on: boolean) {
+  try {
+    window.localStorage.setItem(RAIN_KEY, on ? 'on' : 'off')
+  } catch {
+    // the toggle still works for this page
+  }
+}
+
 export default function RainScreen({
   fontSize = 14,
   lineHeightRatio = 1.2,
@@ -105,7 +128,12 @@ export default function RainScreen({
   const baseRef = useRef<(() => void) | null>(null)
   const activeRef = useRef<Active>({ id: null, state: 'idle' })
   const [active, setActive] = useState<Active>({ id: null, state: 'idle' })
-  const [raining, setRaining] = useState(true)
+  // Guarded like this because the prerendered HTML is produced where there is no
+  // `window`; nothing visible depends on `raining` until after measurement, so
+  // reading the preference on the first client render cannot mismatch.
+  const [raining, setRaining] = useState(() =>
+    typeof window === 'undefined' ? true : readRain(),
+  )
   const [reserved, setReserved] = useState(0)
   const [footer, setFooter] = useState(0)
   const footersRef = useRef<Map<string, number>>(new Map())
@@ -173,6 +201,16 @@ export default function RainScreen({
   const repaint = useCallback(() => renderRef.current?.(), [])
 
   const toggleRain = useCallback(() => setRaining((on) => !on), [])
+
+  // Persist the choice, and follow it in other tabs of the same origin.
+  useEffect(() => {
+    writeRain(raining)
+    const onStorage = (event: StorageEvent) => {
+      if (event.key === RAIN_KEY) setRaining(event.newValue !== 'off')
+    }
+    window.addEventListener('storage', onStorage)
+    return () => window.removeEventListener('storage', onStorage)
+  }, [raining])
 
   const surface = useMemo<MonoSurface>(
     () => ({

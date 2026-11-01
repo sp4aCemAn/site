@@ -33,6 +33,12 @@ share one coordinate system — and so does the rain.
 4. Rows are recomposed only when their cells changed, unchanged rows keep their array identity,
    and ink depth uses 40 quantized greyscale classes rather than inline styles.
 
+## Visitor state
+The only preference kept is rain on/off, in `localStorage` (`textscreen.rain`) rather than a
+cookie: the export is served as static files, so nothing ever reads a cookie server-side, and a
+cookie would ride along on every request for no benefit. It is read behind a `typeof window`
+guard to keep the prerendered HTML identical to the first client render.
+
 ## Entry Points
 - **Screen shell**: `src/components/rainScreen/textScreen.tsx`
 - **Routes**: `src/app/page.tsx`, `src/app/news/`, `src/app/projects/`, `src/app/coolstuff/`

@@ -24,4 +24,13 @@ A personal site where the whole interface is one measured monospace character gr
 
 `/` · `/news` · `/news/[slug]` · `/projects` · `/coolstuff`
 
-`MENU` opens the nav and social links, `RAIN ON` / `RAIN OFF` toggles the rain. The controls are
+`MENU` opens the nav, the social links and the `RAIN ON` / `RAIN OFF` toggle, so a closed screen
+shows nothing but `MENU`. The controls are real links and buttons with their chrome removed —
+hovering or tabbing to one just makes its label and box bold.
+
+## Where things are
+
+- `src/components/rainScreen/` — the grid, the rain, the screen shell and controls
+- `src/components/text/` — measurement, buttons, glyph headings, prose, embeds, markdown
+- `src/data/` — all content and the glyph fonts (`assets/figlet/` has the samples they came from)
+- `docs/` and `AGENTS.md` — how it renders, how to add a region, supported markdown, deployment
