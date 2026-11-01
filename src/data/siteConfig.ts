@@ -1,5 +1,5 @@
 // Single source of truth for the whole site.
-// Edit this file to make the site yours — routes and components read from here.
+// Edit this file to make the site yours — every screen reads its content here.
 
 export interface Socials {
   email?: string;
@@ -17,22 +17,34 @@ export interface NavLink {
   href: string;
 }
 
+export interface ScreenContent {
+  title: string;
+  /**
+   * Markdown, one array element per block. Multi-line blocks (lists, fences) are a
+   * single element with `\n` inside it, because elements are joined with a blank line.
+   */
+  blurb: string[];
+}
+
 export interface Article {
   slug: string;
   title: string;
+  /** Display date, e.g. 2026-11-01. */
   date: string;
   summary: string;
-  content: string[];
+  /** Markdown, one array element per block (see `ScreenContent.blurb`). */
+  body: string[];
 }
 
 export const site = {
-  name: "Your Name",
-  tagline: "What you do in five words.",
-  description: "Personal site of Your Name — projects, notes and things worth linking to.",
+  name: "spaceman",
+  tagline: "coolest man on earth B)",
+  description: ".",
   navLinks: [
     { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "News", href: "/news" }
+    { label: "News", href: "/news" },
+    { label: "Projects", href: "/projects" },
+    { label: "Cool Stuff", href: "/coolstuff" }
   ] satisfies NavLink[]
 };
 
@@ -47,58 +59,103 @@ export const socials: Socials = {
   tiktokUrl: ""
 };
 
-export const homeData = {
-  // Big intro text rendered below the fold on the home page.
-  content: [
-    "# Hello",
-    "This site is built out of text itself — headings, lines and paragraphs *are* the layout. The blocks are measured and wrapped by [pretext](https://github.com/chenglou/pretext), so every line is exact.",
-    "## How this template works",
-    "1. **Configure**: All content lives in `src/data/siteConfig.ts`.",
-    "2. **Customize**: Edit components in `src/components` to change the look.",
-    "3. **Deploy**: Use the `Makefile` or Docker for production."
+export const homeScreen: ScreenContent = {
+  title: "Home",
+  blurb: [
+    site.tagline,
+    "Hello welcome to my website. If you like any of my stuff feel free to hmu B)",
+    "Open MENU to jump between screens, or toggle RAIN OFF to read in peace."
   ]
 };
 
-export const aboutData = {
-  title: "About",
-  imageSrc: "/image.jpg",
-  content: [
-    "Replace this with your story. Edit `aboutData.content` in `src/data/siteConfig.ts`.",
-    "Markdown works here: **bold**, lists, links, images — anything the markdown field supports.",
-    "- A bullet list of things you care about",
-    "- Another one",
-    "- And one more"
+export const newsScreen: ScreenContent = {
+  title: "News",
+  blurb: [
+    "Notes and updates, written in markdown and painted into the same character grid as everything else.",
+    "The boxes below go to the full posts."
   ]
 };
 
-export const newsData = {
-  pageTitle: "News & Updates",
-  pageSubtitle: "Notes, links and updates.",
-  pageImage: "/image.jpg"
+export const projectsScreen: ScreenContent = {
+  title: "Projects",
+  blurb: [
+    "## Things I have built and shipped",
+    "Replace this with your own work. A heading like the one above is a `##`; a single `#` would come out in the big glyph font instead.",
+    "- nvterminals — terminal buffers as Neovim buffers, with an agent-facing MCP surface around them",
+    "- site — this screen: rain, headings, buttons and prose in one measured grid",
+    "> Quote blocks get a rail down the left so they read apart from the body text.",
+    "```\nnpm run dev      # http://localhost:3000\nmake run         # same thing, in Docker\n```",
+    "![Project screenshot](/image3.jpg \"40x12\")",
+    "Read the [build log](/news/text-screen) or the [pretext source](https://github.com/chenglou/pretext)."
+  ]
+};
+
+export const coolStuffScreen: ScreenContent = {
+  title: "Cool Stuff",
+  blurb: [
+    "## Links, videos and oddments",
+    "A video link on its own line becomes an embedded player box:",
+    "[ TOOL - Schism (Official Video) ](https://www.youtube.com/watch?v=MM62wjLrgmA)",
+    "1. Boxes are real links and real iframes\n2. Nothing here is an image of text\n3. The rain just routes around them",
+    "See the [news list](/news) for the writing."
+  ]
 };
 
 export const articles: Article[] = [
   {
-    slug: "test",
-    title: "test",
-    date: "2026-6-2",
-    summary: "test",
-    content: [
-      "this is a test article",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam placerat molestie tortor. Maecenas lacinia blandit nisl sed dapibus. Ut vel odio sodales arcu gravida eleifend in eget nibh. Nunc ultricies, risus et mattis blandit, lectus turpis porta lectus, ac facilisis massa odio et mi.",
-      "[image1](image.jpg)",
-      "Praesent ante est, lacinia sed tincidunt feugiat, euismod non libero. Donec semper sed metus maximus hendrerit. Sed et tellus id erat sollicitudin volutpat. Ut egestas congue risus porta mollis.",
-      "[image2](image2.jpg)",
-      "Maecenas venenatis interdum lorem, eu condimentum turpis ullamcorper quis. Sed tristique, justo sit amet hendrerit congue, tellus lectus ornare velit, non auctor elit nunc nec dolor."
+    slug: "text-screen",
+    title: "Text Screen",
+    date: "2026-11-01",
+    summary: "Why this site is one character grid, and what that buys you.",
+    body: [
+      "# Built with text",
+      "## The idea",
+      "Every pixel of this page is a cell in a measured monospace grid: the rain, the headings, the boxes you click, and this paragraph. Nothing is positioned with CSS layout, so there is no second system to keep in sync with the text.",
+      "### What that buys",
+      "- Labels cannot drift out of alignment with the grid\n- Depth is greyscale, so the rain reads as weather rather than noise\n- The canvas grows when a page is taller than the window, and the document scrolls",
+      "The buttons are real links with no chrome of their own:",
+      "[the news list](/news)",
+      "> A terminal is already a layout engine. It just has opinions about columns.",
+      "```",
+      "const cols = Math.floor(width / measureMonoWidth(14))",
+      "const rows = Math.max(windowRows, reserved + footer)",
+      "```",
+      "See [pretext](https://github.com/chenglou/pretext) for the measurement side."
+    ]
+  },
+  {
+    slug: "greyscale",
+    title: "Greyscale",
+    date: "2026-10-26",
+    summary: "Painting depth with 40 opacity steps and no inline styles.",
+    body: [
+      "## Depth without colour",
+      "The theme is black and white, so distance has to come from brightness. Each glyph run gets one of 40 quantised opacity classes, which means a repaint swaps class names instead of rewriting inline styles, and neighbouring cells merge into a single run more often.",
+      "#### Why quantise at all",
+      "Because a run of identical styles is one DOM node, and fewer nodes is the whole trick when the canvas repaints twelve times a second.",
+      "![Test pattern](/image2.jpg \"32x10\")"
+    ]
+  },
+  {
+    slug: "keyboard",
+    title: "Keyboard",
+    date: "2026-10-12",
+    summary: "Every control is a real button, even though you only ever see glyphs.",
+    body: [
+      "## Focus, but painted",
+      "The boxes are ordinary links and buttons with their chrome stripped, so tab order, cmd-click and screen readers keep working. The only feedback is typographic: hovering or focusing bolds the label and its box.",
+      "1. Tab reaches each box in DOM order",
+      "2. The focused label is the one that comes back bold",
+      "3. Pressing dims it for the length of the click",
+      "> If a control cannot be reached with one key, it is decoration, not an interface."
     ]
   }
 ];
 
+/** Boxes for the news screen, newest first. */
 export const getNewsItems = () =>
-  articles.map(({ slug, date, title, summary }) => ({
-    key: slug,
-    date,
-    title,
-    summary,
-    linkHref: `/news/${slug}`
+  articles.map((article) => ({
+    label: `${article.date} · ${article.title}`,
+    href: `/news/${article.slug}`,
+    summary: article.summary
   }));

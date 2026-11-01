@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import NewsPage1 from "@/components/pageType/newsPage1";
-import { site, newsData, getNewsItems } from "@/data/siteConfig";
+import NewsBody from "@/components/rainScreen/newsList";
+import TextScreen from "@/components/rainScreen/textScreen";
+import { getNewsItems, newsScreen, site } from "@/data/siteConfig";
 
 export const metadata: Metadata = {
-  title: `${site.name} - ${newsData.pageTitle}`,
+  title: `${site.name} - News`,
 };
 
-export default function NewsRoute() {
-  return <NewsPage1 {...newsData} items={getNewsItems()} />;
+export default function NewsPage() {
+  return (
+    <TextScreen title={newsScreen.title}>
+      <NewsBody screen={newsScreen} items={getNewsItems()} />
+    </TextScreen>
+  );
 }

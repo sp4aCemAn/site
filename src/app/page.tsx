@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
-import Home from "@/components/pageType/homePage1";
-import { site } from "@/data/siteConfig";
+import ScreenBody from "@/components/rainScreen/screenBody";
+import TextScreen from "@/components/rainScreen/textScreen";
+import { homeScreen, site } from "@/data/siteConfig";
 
 export const metadata: Metadata = {
-  title: `${site.name} - Home`,
+  title: site.name,
+  description: site.description,
 };
 
-export default function HomePageRoute() {
-  return <Home />;
+export default function Home() {
+  return (
+    <TextScreen title={site.name}>
+      <ScreenBody screen={homeScreen} prefix="home" />
+    </TextScreen>
+  );
 }

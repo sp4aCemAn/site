@@ -10,7 +10,8 @@ import {
 
 // Must stay in sync with `--font-sans` in globals.css so canvas measurement
 // matches what the browser paints.
-const FAMILY = '"Helvetica Neue", "Helvetica", "Arial", sans-serif'
+const FAMILY =
+  '"ui-monospace", "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace'
 
 export interface PretextBlockProps {
   text: string
