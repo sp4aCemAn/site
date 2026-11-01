@@ -144,7 +144,7 @@ export default function MarkdownFlow({
     <>
       {placed.map(({ key, row, block }) => (
         <Fragment key={key}>
-          {renderBlock({ key, block, row, left, textCols, fontFor })}
+          {renderBlock({ key, block, row, left, textCols, screenCols: metrics.cols, fontFor })}
         </Fragment>
       ))}
     </>
@@ -157,6 +157,7 @@ function renderBlock({
   row,
   left,
   textCols,
+  screenCols,
   fontFor,
 }: {
   key: string
@@ -164,6 +165,7 @@ function renderBlock({
   row: number
   left: number
   textCols: number
+  screenCols: number
   fontFor: (text: string) => BigFont | null
 }) {
   switch (block.kind) {
@@ -253,19 +255,22 @@ function renderBlock({
           opacity={0.8}
         />
       )
-    case 'embed':
+    case 'embed': {
+      // Shrink an over-wide box to the screen instead of dropping the embed.
+      const cols = Math.max(20, Math.min(block.embed.cols, screenCols - 4))
       return (
         <GridEmbed
           id={`${key}-e`}
           src={block.embed.src}
           title={block.embed.title}
           kind={block.embed.kind}
-          cols={block.embed.cols}
+          cols={cols}
           rows={block.embed.rows}
           align="center"
           row={row}
         />
       )
+    }
     case 'link':
       return (
         <TextButton

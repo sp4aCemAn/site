@@ -3,7 +3,7 @@ import { measureNaturalWidth, prepareWithSegments } from '@chenglou/pretext'
 
 // The exact same string is used as the canvas font key for pretext, so the
 // measurement always matches what the browser paints. Kept in sync with
-// `--font-sans` in globals.css and the font key in pretextBlock.tsx.
+// `--font-sans` in globals.css.
 export const MONO =
   '"ui-monospace", "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace'
 

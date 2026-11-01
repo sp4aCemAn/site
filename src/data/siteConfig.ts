@@ -97,6 +97,11 @@ export const coolStuffScreen: ScreenContent = {
     "A video link on its own line becomes an embedded player box:",
     "[ TOOL - Schism (Official Video) ](https://www.youtube.com/watch?v=MM62wjLrgmA)",
     "1. Boxes are real links and real iframes\n2. Nothing here is an image of text\n3. The rain just routes around them",
+    "## Type big letters",
+    "The banners on this site are FIGlet fonts, which have been making text out of text since 1991 — grab the program, the JS port our glyphs came from, or just play with the generator:",
+    "[FIGlet](https://www.figlet.org/)",
+    "[figlet.js](https://github.com/patorjk/figlet.js)",
+    "[TAAG](https://patorjk.com/software/taag/)",
     "See the [news list](/news) for the writing."
   ]
 };
@@ -144,9 +149,7 @@ export const articles: Article[] = [
     body: [
       "## Focus, but painted",
       "The boxes are ordinary links and buttons with their chrome stripped, so tab order, cmd-click and screen readers keep working. The only feedback is typographic: hovering or focusing bolds the label and its box.",
-      "1. Tab reaches each box in DOM order",
-      "2. The focused label is the one that comes back bold",
-      "3. Pressing dims it for the length of the click",
+      "1. Tab reaches each box in DOM order\n2. The focused label is the one that comes back bold\n3. Pressing dims it for the length of the click",
       "> If a control cannot be reached with one key, it is decoration, not an interface."
     ]
   }

@@ -1,33 +1,36 @@
-# Deployment Overview
+# Deployment
 
-This project is designed to be deployed across various environments using standard web deployment practices. The primary goal is to ensure consistency between development, staging, and production environments.
+`next.config.ts` sets `output: 'export'`, so every deploy target is a static tree — there is no
+Node server in production and no Server Actions or route handlers to host.
 
-## Deployment Options
+## 1. Docker (self-hosting)
+Three stages in `Dockerfile`: `dependencies` → `builder` (`npm run build`, emitting `out/`) →
+`runner` (nginx serving `out/` on **8080**, config in `nginx.conf`).
 
-### 1. Docker (Recommended for Self-Hosting)
-The project includes a `Dockerfile` and `docker-compose.yml` for easy containerization.
-- **Environment**: Suitable for VPS, DigitalOcean, AWS EC2, etc.
-- **Setup**: 
-  - Use `docker-compose up --build -d` to start the application in detached mode.
-  - Nginx is used as a reverse proxy (if configured) to handle SSL and port mapping.
+```bash
+docker build -t text-screen .
+docker run --rm -p 8080:8080 text-screen
+```
 
-### 2. Vercel (Recommended for Frontend-only)
-Since the project uses Next.js, Vercel provides an optimized deployment pipeline.
-- **Setup**: Connect your GitHub repository to Vercel.
-- **Configuration**: Vercel will automatically detect Next.js and configure the build commands (`npm run build` and `npm run start`).
-- **Environment Variables**: Ensure all necessary `.env` variables are set in the Vercel dashboard.
+`docker-compose.yaml` is the **dev** service only (`npm run dev`, port 3000) and mounts
+`node_modules`/`.next` as anonymous volumes. After dependency or CSS changes, recreate them:
 
-### 3. GitHub Pages
-*Note: This is primarily for static exports.*
-- **Setup**: Requires `next export` (or the `output: 'export'` in `next.config.js`).
-- **Limitations**: Dynamic features of Next.js (like Server Actions or dynamic API routes) will not work on GitHub Pages.
+```bash
+make down   # docker compose down -v
+make run    # docker compose up
+```
 
-## CI/CD Pipeline
-- **GitHub Actions**: Can be used to automate the build process, run linting, and trigger deployments to Vercel or Docker registries.
-- **Makefile**: Use the provided `Makefile` to standardize common deployment-related commands like building, linting, and container startup.
+## 2. GitHub Pages
+`npm run build` produces `out/`. Publish it with the Pages action, and set
+`NEXT_PUBLIC_BASE_PATH=/<repo>` at build time so `/image3.jpg`-style asset paths and
+`getPublicPath()` resolve under the project subdirectory. `trailingSlash: true` means URLs end
+in `/` — which is what `TextButton` normalizes internal hrefs to.
 
-## Environment Variables
-Ensure the following variables are configured in your production environment:
-- `NEXT_PUBLIC_API_URL`: The base URL for your backend services.
-- `NODE_ENV`: Set to `production`.
-- (Other project-specific secrets should be added here).
+## 3. Vercel or any static host
+Point it at `out/` (or let the framework preset run the same build). Dynamic features are
+unavailable by design; the only runtime dependency is the browser.
+
+## Environment variables
+- `NEXT_PUBLIC_BASE_PATH` — subdirectory the export is served from (GitHub Pages).
+Nothing else is required, and no secrets belong in this project: `next.config.ts` sets
+`images.unoptimized` because the export cannot use the Next image optimizer.

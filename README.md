@@ -1,50 +1,27 @@
-# Project Overview
-A personal-site **Next.js** + **TypeScript** template. All site content (identity, navigation, socials, home/about sections, articles) lives in one config file, `src/data/siteConfig.ts`. Routes are plain files in `src/app` that read from the config — no route configurator, no generated files.
+# Text Screen
 
-Visual customization is handled by editing the components in `src/components`.
+A personal site where the whole interface is one measured monospace character grid. The rain,
 
-## Tech Stack
-- **Framework**: Next.js (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS (v4) with `@tailwindcss/typography`
-- **Icons**: react-icons, lucide-react
-- **Containerization**: Docker & Docker Compose
-- **Deployment**: Vercel or GitHub Pages (see docs/architecture/deployment.md)
-- **Scripts**: Makefile
+## Tools used
 
-## Requirements
-- **Node.js**: v18.17.0 or higher
-- **npm** or **yarn**
-- **Docker** & **Docker Compose** (Optional, but recommended for consistent development)
-- **Git**
+- [pretext](https://github.com/chenglou/pretext) — the text measurement library this whole site is
+  built on: it decides how many columns fit and how every block wraps
+- [Next.js](https://nextjs.org) + React + TypeScript, exported to static files
+- [Tailwind CSS](https://tailwindcss.com) v4 — only for the black/white theme and the ink classes
+- [FIGlet](http://www.figlet.org) `Gothic` — the big-letter font; `assets/figlet/` holds the samples
+- Docker — reproducible dev environment
 
-## Key Features
-- **Config-Driven Content**: Edit `src/data/siteConfig.ts` to change everything visitors see.
-- **Dynamic Article Routes**: Add an entry to `articles` in the config and `/news/[slug]` is generated at build time.
-- **Text-as-Structure Layout**: `PretextBlock` uses [@chenglou/pretext](https://github.com/chenglou/pretext) to measure and wrap text in pure JS — shrink-wrapped headings, measured line clamps, per-line reveal animations, all on a pure black & white theme.
-- **Composable Architecture**: Swap sections and layouts by editing files in `src/app`.
-- **Component-Driven UI**: Complete control over the look and feel via `src/components`.
-- **Dockerized Environment**: Ready for consistent development and deployment.
+## personal config
 
-## Workflow
-1. **Configure**: Edit `src/data/siteConfig.ts` — site name, nav, socials, hero content, about text, articles.
-2. **Customize**: Edit the UI components in `src/components` to match your branding.
-3. **Deploy**: Use Docker or the Makefile to manage your production environment.
+- Editor:
+  [nvim config](https://github.com/sp4acemanwork/nvimConfig),
+  [nvimterminals](https://github.com/sp4aCemAn/nvimterminals)
+  [nvimc](https://github.com/sp4aCemAn/nvimcp)
+  [Neovim](https://neovim.io), and
+  [opencode](https://opencode.ai)
 
-## Getting Started
-1. **Install Dependencies**:
-   ```bash
-   npm install
-   ```
-2. **Run Development Server**:
-   ```bash
-   npm run dev
-   ```
-3. **Build for Production**:
-   ```bash
-   npm run build
-   ```
-4. **Docker Setup**:
-   ```bash
-   docker-compose up --build
-   ```
+## Screens
+
+`/` · `/news` · `/news/[slug]` · `/projects` · `/coolstuff`
+
+`MENU` opens the nav and social links, `RAIN ON` / `RAIN OFF` toggles the rain. The controls are

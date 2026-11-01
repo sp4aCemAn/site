@@ -1,30 +1,26 @@
-# LMS Content Delivery System
+# Content Delivery
 
-This section documents how the application handles content delivery, structured as a modular, template-driven system.
+Content is data, screens are functions of that data, and nothing is generated into the tree.
 
-## Page Types
-The system uses a modular approach where different content areas are represented by specific components in `src/components/pageType/`. This allows for varied layouts while maintaining a consistent design language.
+## Sources
+- `src/data/siteConfig.ts` — `site` (name, tagline, description, `navLinks`), `socials`,
+  one `ScreenContent` per screen (`homeScreen`, `newsScreen`, `projectsScreen`,
+  `coolStuffScreen`) and `articles: Article[]`.
+- `src/data/fonts/` — glyph block arrays (`BigFont`) used for headings.
 
-- **Home Pages**: `HomePage1`, `HomePage2` (Landing experiences)
-- **News Section**:
-    - `NewsPage1`, `NewsPage2`: List views for multiple news items.
-    - `NewsArticlePage1`: Detailed view for a single article.
-- **About & Info**:
-    - `AboutMePage1`, `AboutMePage3`: Personal/Organizational info.
-    - `VolunteerPage1`, `VolunteerPage2`, `VolunteerPage3`: Volunteer-specific content.
-    - `DonationPage1`: Contribution information.
-    - `PrivacyPage1`: Legal and privacy policies.
+## Routes
+| route | source | notes |
+| --- | --- | --- |
+| `/` | `site` + `homeScreen` | wordmark title, intro flow |
+| `/news` | `newsScreen` + `getNewsItems()` | one box per article, summary beneath |
+| `/news/[slug]` | `articles` | `generateStaticParams`, `dynamicParams = false`: unknown slugs 404 and every post is prerendered by `npm run build` |
+| `/projects`, `/coolstuff` | their `ScreenContent` | markdown bodies with image/video embeds |
 
-## Content Rendering
-Content is primarily rendered through a set of reusable article components located in `src/components/article/`:
+Each route renders `<TextScreen title=…>` and hands its content to `<MarkdownFlow>` (directly
+or via `ScreenBody`/`NewsBody`/`ArticleBody`), so adding a page means adding data plus one
+short file in `src/app`.
 
-- **ArticleHeader**: Displays the title and primary metadata.
-- **ArticleSummary**: Provides a brief teaser for lists or previews.
-- **ArticleContent**: The main body of the content, supporting rich text and media.
-
-## Modular Assembly
-Pages are built by composing structural blocks:
-- **HeroSection**: Large top banners (e.g., `BannerAboutMe`).
-- **Midsection**: Reusable middle blocks (e.g., `AboutSection`, `midsection.tsx`) to segment content.
-- **Layout Helpers**: `LeftAlText` and `RightAlPic` for alternating content layouts.
-- **Media**: `ImageGallery` and `ImageBanner` for integrated visual content.
+## Markdown
+Body copy is the subset described in `docs/lms/markdown-rendering.md`. One array element is one
+block — lists and fences are a single string with `\n` inside, because elements are joined with
+a blank line. Links and images inside the text become real regions: `╔═╗` boxes, iframes, images.

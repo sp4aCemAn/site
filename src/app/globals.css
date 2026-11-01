@@ -1,48 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  /* Pure black & white theme */
-  --color-brand-color1: #000000;
-  --color-brand-color2: #000000;
-  --color-imperial-blue: #000000;
-  --color-plat: #FFFFFF;
-  --color-inferno: #FFFFFF;
-
-  --color-instagram: #FFFFFF;
-  --color-facebook: #FFFFFF;
-  --color-tiktok: #FFFFFF;
-  --color-mail: #FFFFFF;
-
-  --color-btn-base-start-primary: #FFFFFF;
-  --color-btn-base-end-primary: #FFFFFF;
-  --color-btn-hover-start-primary: #DDDDDD;
-  --color-btn-hover-end-primary: #DDDDDD;
-  --color-btn-highlight-primary: #000000;
-
-  --color-btn-base-start-secondary: #000000;
-  --color-btn-base-end-secondary: #000000;
-  --color-btn-hover-start-secondary: #222222;
-  --color-btn-hover-end-secondary: #222222;
-  --color-btn-highlight-secondary: #FFFFFF;
-
-  --color-btn-base-start-mobile: #FFFFFF;
-  --color-btn-base-end-mobile: #FFFFFF;
-  --color-btn-hover-start-mobile: #DDDDDD;
-  --color-btn-hover-end-mobile: #DDDDDD;
-  --color-btn-highlight-mobile: #000000;
-
-  --color-btn-base-start-danger: #FFFFFF;
-  --color-btn-base-end-danger: #000000;
-  --color-btn-hover-start-danger: #DDDDDD;
-  --color-btn-hover-end-danger: #FFFFFF;
-  --color-btn-highlight-danger: #000000;
-  --color-btn-base-danger2: #000000;
-  --color-btn-hover-danger2: #222222;
-  --color-btn-curve-danger2: #FFFFFF;
-  --color-btn-curve-danger2-hover: #DDDDDD;
-
-  /* Terminal-ish monospace stack. pretextBlock.tsx and rainScreen.tsx repeat
-     this exact string as their canvas font key, so keep all three in sync. */
+  /* Terminal-ish monospace stack. monoGrid.ts repeats this exact string as
+     its canvas font key, so keep the two in sync. */
   --font-sans: "ui-monospace", "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
 }
 
@@ -56,23 +16,6 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-text-size-adjust: 100%;
-}
-
-/* Pretext per-line reveal animation */
-.pt-line-reveal {
-  opacity: 0;
-  animation: ptReveal 0.45s cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
-}
-
-@keyframes ptReveal {
-  from {
-    opacity: 0;
-    transform: translateY(0.4em);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
 }
 
 /* Painted-ink depth: 40 quantized greyscale steps so a repaint swaps class
