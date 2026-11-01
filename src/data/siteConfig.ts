@@ -71,11 +71,10 @@ export const homeScreen: ScreenContent = {
 export const newsScreen: ScreenContent = {
   title: "News",
   blurb: [
-    "Notes and updates, written in markdown and painted into the same character grid as everything else.",
-    "The boxes below go to the full posts."
+    "No news yet... maybe ill start writing about stuff im working on",
+    ""
   ]
 };
-
 export const projectsScreen: ScreenContent = {
   title: "Projects",
   blurb: [
@@ -107,52 +106,7 @@ export const coolStuffScreen: ScreenContent = {
 };
 
 export const articles: Article[] = [
-  {
-    slug: "text-screen",
-    title: "Text Screen",
-    date: "2026-11-01",
-    summary: "Why this site is one character grid, and what that buys you.",
-    body: [
-      "# Built with text",
-      "## The idea",
-      "Every pixel of this page is a cell in a measured monospace grid: the rain, the headings, the boxes you click, and this paragraph. Nothing is positioned with CSS layout, so there is no second system to keep in sync with the text.",
-      "### What that buys",
-      "- Labels cannot drift out of alignment with the grid\n- Depth is greyscale, so the rain reads as weather rather than noise\n- The canvas grows when a page is taller than the window, and the document scrolls",
-      "The buttons are real links with no chrome of their own:",
-      "[the news list](/news)",
-      "> A terminal is already a layout engine. It just has opinions about columns.",
-      "```",
-      "const cols = Math.floor(width / measureMonoWidth(14))",
-      "const rows = Math.max(windowRows, reserved + footer)",
-      "```",
-      "See [pretext](https://github.com/chenglou/pretext) for the measurement side."
-    ]
-  },
-  {
-    slug: "greyscale",
-    title: "Greyscale",
-    date: "2026-10-26",
-    summary: "Painting depth with 40 opacity steps and no inline styles.",
-    body: [
-      "## Depth without colour",
-      "The theme is black and white, so distance has to come from brightness. Each glyph run gets one of 40 quantised opacity classes, which means a repaint swaps class names instead of rewriting inline styles, and neighbouring cells merge into a single run more often.",
-      "#### Why quantise at all",
-      "Because a run of identical styles is one DOM node, and fewer nodes is the whole trick when the canvas repaints twelve times a second.",
-      "![Test pattern](/image2.jpg \"32x10\")"
-    ]
-  },
-  {
-    slug: "keyboard",
-    title: "Keyboard",
-    date: "2026-10-12",
-    summary: "Every control is a real button, even though you only ever see glyphs.",
-    body: [
-      "## Focus, but painted",
-      "The boxes are ordinary links and buttons with their chrome stripped, so tab order, cmd-click and screen readers keep working. The only feedback is typographic: hovering or focusing bolds the label and its box.",
-      "1. Tab reaches each box in DOM order\n2. The focused label is the one that comes back bold\n3. Pressing dims it for the length of the click",
-      "> If a control cannot be reached with one key, it is decoration, not an interface."
-    ]
-  }
+
 ];
 
 /** Boxes for the news screen, newest first. */
