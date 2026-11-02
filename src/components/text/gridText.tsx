@@ -65,8 +65,8 @@ export default function GridText({
   align = 'center',
   border = false,
   label,
-  spacing = 1,
-  opacity = 1,
+  spacing = 0,
+  opacity = 0,
   bold = false,
 }: GridTextProps) {
   const { metrics } = useMonoSurface()
@@ -113,14 +113,14 @@ export default function GridText({
   const region = useMemo(
     () =>
       metrics.cols > 0 &&
-      lines.length > 0 &&
-      inner <= metrics.cols - 2
+        lines.length > 0 &&
+        inner <= metrics.cols - 2
         ? {
-            id,
-            rect: { col: startCol, row: startRow, cols: inner, rows: height },
-            reserve: anchor === 'bottom' ? undefined : startRow + height,
-            draw,
-          }
+          id,
+          rect: { col: startCol, row: startRow, cols: inner, rows: height },
+          reserve: anchor === 'bottom' ? undefined : startRow + height,
+          draw,
+        }
         : null,
     [id, draw, startCol, startRow, inner, height, lines.length, metrics.cols, anchor],
   )

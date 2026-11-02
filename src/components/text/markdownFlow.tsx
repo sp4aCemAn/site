@@ -43,7 +43,7 @@ export function flowTextCols(metrics: { cols: number }, ofWidth = 0.68, maxCols 
 
 function headingRows(text: string, font: BigFont | null): number {
   if (!font) return 1
-  const size = bigTextSize(composeBigText(font, text, { gap: 1, lower: true }))
+  const size = bigTextSize(composeBigText(font, text, { gap: 0, lower: true }))
   return size.rows + HEADING_PAD * 2
 }
 

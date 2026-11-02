@@ -78,7 +78,17 @@ export const newsScreen: ScreenContent = {
 export const projectsScreen: ScreenContent = {
   title: "Projects",
   blurb: [
-    "## still in progress..."
+    "## nvim plugins and personal tools that i made...",
+    "-----------------------------------------------------------------------------",
+    "a custom mcp made for nvim that connects with my terminal plugin",
+    "[nvimcp ](https://github.com/sp4aCemAn/nvimcp)",
+    "-----------------------------------------------------------------------------",
+    "my custom plugin that i use for seperated term buffers + agent support for terminals",
+    "[nvimterminals](https://github.com/sp4aCemAn/nvimterminals)",
+    "-----------------------------------------------------------------------------",
+    "## projects that are in progress. \"working\" proof of concept stuff",
+    "check out this project an ai enabled multi user dungeon proof of concept. used cactus lm (self hosted) and whatever self hosted lm personally i used lm studio and gemma e4b.",
+    "[ai mud](https://github.com/sp4aCemAn/ai-mud)"
 
   ]
 };
