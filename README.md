@@ -1,6 +1,6 @@
 # Text Screen
 
-A personal site where the whole interface is one measured monospace character grid. The rain,
+My personal site, basically everything is rendered with text lol wanted to play with [pretext](https://github.com/chenglou/pretext). Pretty dope library
 
 ## Tools used
 
@@ -11,7 +11,7 @@ A personal site where the whole interface is one measured monospace character gr
 - [FIGlet](http://www.figlet.org) `Gothic` — the big-letter font; `assets/figlet/` holds the samples
 - Docker — reproducible dev environment
 
-## personal config
+## Personal config
 
 - Editor:
   [Neovim](https://neovim.io),
