@@ -3,9 +3,10 @@ import { measureNaturalWidth, prepareWithSegments } from '@chenglou/pretext'
 
 // The exact same string is used as the canvas font key for pretext, so the
 // measurement always matches what the browser paints. Kept in sync with
-// `--font-sans` in globals.css.
+// `--font-sans` in globals.css. "JetBrains Mono" is shipped by the site, so
+// every device resolves the stack to the same family.
 export const MONO =
-  '"ui-monospace", "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace'
+  '"JetBrains Mono", "ui-monospace", "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace'
 
 export const FALLBACK_CHAR_WIDTH = 0.6
 

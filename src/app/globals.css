@@ -1,9 +1,27 @@
 @import "tailwindcss";
 
+/* Grid font ships with the site (OFL-1.1, public/fonts/OFL.txt) so every
+   device resolves the stack to the same family at the same cell widths. */
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("/fonts/jetbrains-mono-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url("/fonts/jetbrains-mono-700.woff2") format("woff2");
+}
+
 @theme {
-  /* Terminal-ish monospace stack. monoGrid.ts repeats this exact string as
-     its canvas font key, so keep the two in sync. */
-  --font-sans: "ui-monospace", "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
+  /* Terminal-ish monospace stack, led by the shipped font. monoGrid.ts repeats
+     this exact string as its canvas font key, so keep the two in sync. */
+  --font-sans: "JetBrains Mono", "ui-monospace", "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
 }
 
 :root {
@@ -21,13 +39,166 @@ body {
 /* Painted-ink depth: 40 quantized greyscale steps so a repaint swaps class
    names instead of writing inline styles per glyph run. Keep in sync with
    INK_STEPS in src/components/text/monoGrid.ts. */
-.pt-i1 { opacity: 0.03; } .pt-i2 { opacity: 0.05; } .pt-i3 { opacity: 0.07; } .pt-i4 { opacity: 0.10; } .pt-i5 { opacity: 0.12; }
-.pt-i6 { opacity: 0.15; } .pt-i7 { opacity: 0.17; } .pt-i8 { opacity: 0.20; } .pt-i9 { opacity: 0.23; } .pt-i10 { opacity: 0.25; }
-.pt-i11 { opacity: 0.28; } .pt-i12 { opacity: 0.30; } .pt-i13 { opacity: 0.33; } .pt-i14 { opacity: 0.35; } .pt-i15 { opacity: 0.38; }
-.pt-i16 { opacity: 0.40; } .pt-i17 { opacity: 0.42; } .pt-i18 { opacity: 0.45; } .pt-i19 { opacity: 0.47; } .pt-i20 { opacity: 0.50; }
-.pt-i21 { opacity: 0.53; } .pt-i22 { opacity: 0.55; } .pt-i23 { opacity: 0.57; } .pt-i24 { opacity: 0.60; } .pt-i25 { opacity: 0.62; }
-.pt-i26 { opacity: 0.65; } .pt-i27 { opacity: 0.68; } .pt-i28 { opacity: 0.70; } .pt-i29 { opacity: 0.72; } .pt-i30 { opacity: 0.75; }
-.pt-i31 { opacity: 0.78; } .pt-i32 { opacity: 0.80; } .pt-i33 { opacity: 0.82; } .pt-i34 { opacity: 0.85; } .pt-i35 { opacity: 0.88; }
-.pt-i36 { opacity: 0.90; } .pt-i37 { opacity: 0.93; } .pt-i38 { opacity: 0.95; } .pt-i39 { opacity: 0.97; } .pt-i40 { opacity: 1.00; }
+.pt-i1 {
+  opacity: 0.03;
+}
 
-.pt-b { font-weight: 700; }
+.pt-i2 {
+  opacity: 0.05;
+}
+
+.pt-i3 {
+  opacity: 0.07;
+}
+
+.pt-i4 {
+  opacity: 0.10;
+}
+
+.pt-i5 {
+  opacity: 0.12;
+}
+
+.pt-i6 {
+  opacity: 0.15;
+}
+
+.pt-i7 {
+  opacity: 0.17;
+}
+
+.pt-i8 {
+  opacity: 0.20;
+}
+
+.pt-i9 {
+  opacity: 0.23;
+}
+
+.pt-i10 {
+  opacity: 0.25;
+}
+
+.pt-i11 {
+  opacity: 0.28;
+}
+
+.pt-i12 {
+  opacity: 0.30;
+}
+
+.pt-i13 {
+  opacity: 0.33;
+}
+
+.pt-i14 {
+  opacity: 0.35;
+}
+
+.pt-i15 {
+  opacity: 0.38;
+}
+
+.pt-i16 {
+  opacity: 0.40;
+}
+
+.pt-i17 {
+  opacity: 0.42;
+}
+
+.pt-i18 {
+  opacity: 0.45;
+}
+
+.pt-i19 {
+  opacity: 0.47;
+}
+
+.pt-i20 {
+  opacity: 0.50;
+}
+
+.pt-i21 {
+  opacity: 0.53;
+}
+
+.pt-i22 {
+  opacity: 0.55;
+}
+
+.pt-i23 {
+  opacity: 0.57;
+}
+
+.pt-i24 {
+  opacity: 0.60;
+}
+
+.pt-i25 {
+  opacity: 0.62;
+}
+
+.pt-i26 {
+  opacity: 0.65;
+}
+
+.pt-i27 {
+  opacity: 0.68;
+}
+
+.pt-i28 {
+  opacity: 0.70;
+}
+
+.pt-i29 {
+  opacity: 0.72;
+}
+
+.pt-i30 {
+  opacity: 0.75;
+}
+
+.pt-i31 {
+  opacity: 0.78;
+}
+
+.pt-i32 {
+  opacity: 0.80;
+}
+
+.pt-i33 {
+  opacity: 0.82;
+}
+
+.pt-i34 {
+  opacity: 0.85;
+}
+
+.pt-i35 {
+  opacity: 0.88;
+}
+
+.pt-i36 {
+  opacity: 0.90;
+}
+
+.pt-i37 {
+  opacity: 0.93;
+}
+
+.pt-i38 {
+  opacity: 0.95;
+}
+
+.pt-i39 {
+  opacity: 0.97;
+}
+
+.pt-i40 {
+  opacity: 1.00;
+}
+
+.pt-b {
+  font-weight: 700;
+}
