@@ -66,7 +66,7 @@ export default function GridText({
   border = false,
   label,
   spacing = 0,
-  opacity = 0,
+  opacity = 1,
   bold = false,
 }: GridTextProps) {
   const { metrics } = useMonoSurface()
