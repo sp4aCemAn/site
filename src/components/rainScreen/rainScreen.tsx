@@ -252,12 +252,12 @@ export default function RainScreen({
     g.resize(cols, rows)
 
     // The frame is text like everything else, so it lives inside the grid:
-    // rain only paints the interior of the ring.
-    const framed = border && cols >= 3 && rows >= 3
-    const innerLeft = framed ? 1 : 0
-    const innerRight = framed ? cols - 2 : cols - 1
+    // rain stays a full cell away from the ring, never painting on or beside it.
+    const framed = border && cols >= 7 && rows >= 7
+    const innerLeft = framed ? 2 : 0
+    const innerRight = framed ? cols - 1 : cols - 1
     const innerTop = framed ? 1 : 0
-    const innerBottom = framed ? rows - 2 : rows - 1
+    const innerBottom = framed ? rows - 1 : rows
 
     const rebuildBase = () => {
       const cells: Cell[][] = Array.from({ length: rows }, () => emptyRow(cols))
@@ -276,11 +276,21 @@ export default function RainScreen({
         cells[rows - 1][cols - 1] = { glyph: '+', opacity: 1 }
       }
       // Regions own every cell they cover, blank field included, and the rain
-      // cannot paint there (the grid keeps a blocked mask).
+      // cannot paint there (the grid keeps a blocked mask). The ring itself is
+      // masked too, so a stale drop from a resize can never overwrite frame ink.
       stampRegions(cells, regionsRef.current, (region) =>
         activeRef.current.id === region.id ? activeRef.current.state : 'idle',
       )
-      g.setBase(cells, regionsRef.current.map((region) => region.rect))
+      const mask: Region['rect'][] = regionsRef.current.map((region) => region.rect)
+      if (framed) {
+        mask.push(
+          { col: 0, row: 0, cols, rows: 1 },
+          { col: 0, row: rows - 1, cols, rows: 1 },
+          { col: 0, row: 0, cols: 1, rows },
+          { col: cols - 1, row: 0, cols: 1, rows },
+        )
+      }
+      g.setBase(cells, mask)
     }
     baseRef.current = rebuildBase
     rebuildBase()
@@ -332,6 +342,9 @@ export default function RainScreen({
       }
 
       for (const drop of dropsRef.current) {
+        // Columns survive a window resize; a stale one must not paint into
+        // the margin or onto the ring of the narrower grid.
+        if (drop.col < innerLeft || drop.col > innerRight) continue
         const tip = Math.floor(drop.row)
         for (let k = 0; k < drop.length; k++) {
           const row = tip - k
@@ -347,6 +360,7 @@ export default function RainScreen({
       }
       if (mode === 'burst') {
         for (const [col, strength] of puddlesRef.current) {
+          if (col < innerLeft || col > innerRight) continue
           g.setInk(innerBottom, col, '~', strength)
         }
       }
