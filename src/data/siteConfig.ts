@@ -80,10 +80,10 @@ export const projectsScreen: ScreenContent = {
   blurb: [
     "## nvim plugins and personal tools that i made...",
     "-----------------------------------------------------------------------------",
-    "a custom mcp made for nvim that connects with my terminal plugin",
-    "[nvimcp ](https://github.com/sp4aCemAn/nvimcp)",
+    "a custom mcp server [ model context protocol ] made for nvim that connects with my terminal plugin",
+    "[nvimcp](https://github.com/sp4aCemAn/nvimcp)",
     "-----------------------------------------------------------------------------",
-    "my custom plugin that i use for seperated term buffers + agent support for terminals",
+    "my custom plugin that i use for separated term buffers + agent support for terminals",
     "[nvimterminals](https://github.com/sp4aCemAn/nvimterminals)",
     "-----------------------------------------------------------------------------",
     "## projects that are in progress. \"working\" proof of concept stuff",
@@ -97,6 +97,7 @@ export const coolStuffScreen: ScreenContent = {
   title: "Cool Stuff",
   blurb: [
     "## heres some cool stuff",
+    " I love tool",
     "tool music video",
     "[ TOOL - Schism (Official Video) ](https://www.youtube.com/watch?v=MM62wjLrgmA)",
     "Still deciding what to put here\n",
@@ -105,7 +106,6 @@ export const coolStuffScreen: ScreenContent = {
     "[FIGlet](https://www.figlet.org/)",
     "[figlet.js](https://github.com/patorjk/figlet.js)",
     "[TAAG](https://patorjk.com/software/taag/)",
-    "[news](/news)"
   ]
 };
 
