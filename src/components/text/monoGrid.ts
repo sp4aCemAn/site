@@ -1,12 +1,34 @@
 import { useEffect, useState, type RefObject } from 'react'
 import { measureNaturalWidth, prepareWithSegments } from '@chenglou/pretext'
 
-// The exact same string is used as the canvas font key for pretext, so the
-// measurement always matches what the browser paints. Kept in sync with
-// `--font-sans` in globals.css. "JetBrains Mono" is shipped by the site, so
-// every device resolves the stack to the same family.
+// Fallback stack only: the real grid font ships with the site via
+// next/font/local (src/app/layout.tsx), whose generated family name is
+// unknown at write-time. gridFontStack() below is the font key the grid
+// measures with — it reads the CSS variable, which expands to the shipped
+// family followed by this same fallback list.
 export const MONO =
-  '"JetBrains Mono", "ui-monospace", "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace'
+  '"ui-monospace", "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace'
+
+export const GRID_FONT_VAR = '--font-grid-mono'
+
+/**
+ * The font stack the grid must both measure and paint with: the value of the
+ * CSS variable next/font/local declares on `<html>`. Reading it here (effects
+ * only, never during render) keeps the canvas font key and the font the DOM
+ * actually paints identical without hardcoding a hashed family name.
+ */
+export function gridFontStack(): string {
+  if (typeof window === 'undefined') return MONO
+  try {
+    return (
+      getComputedStyle(document.documentElement)
+        .getPropertyValue(GRID_FONT_VAR)
+        .trim() || MONO
+    )
+  } catch {
+    return MONO
+  }
+}
 
 export const FALLBACK_CHAR_WIDTH = 0.6
 
@@ -32,6 +54,8 @@ export type Metrics = {
   lineHeight: number
   /** Font size the cells were measured at, for re-wrapping prose in the grid. */
   fontSize: number
+  /** Resolved font stack the cells were measured with, for the same key in DOM-free wraps. */
+  fontStack: string
 }
 
 /**
@@ -115,14 +139,17 @@ export function writeCells(
 }
 
 /**
- * One monospace advance width, measured by pretext with the shared font key.
- * This is the only measurement the grid needs: in a monospace font every cell
- * is the same width, so `cols`/`rows` derived from it are already an exact line
- * layout — no per-frame re-layout pass is required.
+ * One monospace advance width, measured by pretext with the grid's resolved
+ * font stack. This is the only measurement the grid needs: in a monospace font
+ * every cell is the same width, so `cols`/`rows` derived from it are already an
+ * exact line layout — no per-frame re-layout pass is required.
  */
-export function measureMonoWidth(fontSize: number): number {
+export function measureMonoWidth(
+  fontSize: number,
+  fontStack: string = gridFontStack(),
+): number {
   try {
-    const ruler = prepareWithSegments('0'.repeat(64), `${fontSize}px ${MONO}`)
+    const ruler = prepareWithSegments('0'.repeat(64), `${fontSize}px ${fontStack}`)
     return measureNaturalWidth(ruler) / 64
   } catch {
     return fontSize * FALLBACK_CHAR_WIDTH
@@ -142,10 +169,11 @@ export function useMonoMetrics(
   charWidth: number
   lineHeight: number
   fontSize: number
+  fontStack: string
   width: number
   ready: boolean
 } {
-  const [size, setSize] = useState({ width: 0, charWidth: 0 })
+  const [size, setSize] = useState({ width: 0, charWidth: 0, fontStack: '' })
   const lineHeight = Math.round(fontSize * lineHeightRatio)
 
   // Only the width is measured from the element: the row count is decided by
@@ -163,10 +191,11 @@ export function useMonoMetrics(
 
   useEffect(() => {
     let cancelled = false
-    const fontKey = `${fontSize}px ${MONO}`
+    const fontStack = gridFontStack()
+    const fontKey = `${fontSize}px ${fontStack}`
     const compute = () => {
-      const charWidth = measureMonoWidth(fontSize)
-      if (!cancelled) setSize((s) => ({ ...s, charWidth }))
+      const charWidth = measureMonoWidth(fontSize, fontStack)
+      if (!cancelled) setSize((s) => ({ ...s, charWidth, fontStack }))
     }
     // Load the regular and bold faces: labels bold on hover must not change
     // the advance width of a cell.
@@ -187,6 +216,7 @@ export function useMonoMetrics(
     charWidth: size.charWidth,
     lineHeight,
     fontSize,
+    fontStack: size.fontStack || MONO,
     width: size.width,
     ready,
   }

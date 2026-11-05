@@ -33,11 +33,14 @@ export interface GridTextProps {
 /** Wrap a paragraph to a cell width using pretext's own line breaking. */
 export function wrapParagraph(
   paragraph: string,
-  metrics: { charWidth: number; lineHeight: number; fontSize: number },
+  metrics: { charWidth: number; lineHeight: number; fontSize: number; fontStack: string },
   cols: number,
 ): string[] {
   if (!paragraph.trim()) return ['']
-  const prepared = prepareWithSegments(paragraph, `${metrics.fontSize}px ${MONO}`)
+  const prepared = prepareWithSegments(
+    paragraph,
+    `${metrics.fontSize}px ${metrics.fontStack || MONO}`,
+  )
   const lines = layoutWithLines(prepared, cols * metrics.charWidth, metrics.lineHeight).lines
   return lines.map((line) => {
     const chars = Array.from(line.text)

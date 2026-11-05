@@ -1,27 +1,11 @@
 @import "tailwindcss";
 
-/* Grid font ships with the site (OFL-1.1, public/fonts/OFL.txt) so every
-   device resolves the stack to the same family at the same cell widths. */
-@font-face {
-  font-family: "JetBrains Mono";
-  font-style: normal;
-  font-weight: 400;
-  font-display: block;
-  src: url("/fonts/jetbrains-mono-400.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "JetBrains Mono";
-  font-style: normal;
-  font-weight: 700;
-  font-display: block;
-  src: url("/fonts/jetbrains-mono-700.woff2") format("woff2");
-}
-
 @theme {
-  /* Terminal-ish monospace stack, led by the shipped font. monoGrid.ts repeats
-     this exact string as its canvas font key, so keep the two in sync. */
-  --font-sans: "JetBrains Mono", "ui-monospace", "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
+  /* The grid font ships with the site via next/font/local (see
+     src/app/layout.tsx); --font-grid-mono expands to its generated family plus
+     the system fallbacks. monoGrid.ts reads that variable at runtime for its
+     canvas font key, so measurement and paint always share one stack. */
+  --font-sans: var(--font-grid-mono);
 }
 
 :root {

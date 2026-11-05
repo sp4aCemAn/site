@@ -87,7 +87,7 @@ export const projectsScreen: ScreenContent = {
     "[nvimterminals](https://github.com/sp4aCemAn/nvimterminals)",
     "-----------------------------------------------------------------------------",
     "## projects that are in progress. \"working\" proof of concept stuff",
-    "check out this project an ai enabled multi user dungeon proof of concept. used cactus lm (self hosted) and whatever self hosted lm personally i used lm studio and gemma e4b.",
+    "check out this project an ai enabled multi user dungeon proof of concept. used cactus lm (self hosted) gemma e2b personally i used lm studio and gemma e4b. for the \"game master\" deets in the readme",
     "[ai mud](https://github.com/sp4aCemAn/ai-mud)"
 
   ]

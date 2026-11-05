@@ -11,6 +11,7 @@ import {
   type ReactNode,
 } from 'react'
 import {
+  GRID_FONT_VAR,
   MONO,
   emptyRow,
   useMonoMetrics,
@@ -141,14 +142,14 @@ export default function RainScreen({
   const [painted, setPainted] = useState<Run[][]>([])
 
   const metrics = useMonoMetrics(hostRef, fontSize, lineHeightRatio)
-  const { cols, charWidth, lineHeight, ready } = metrics
+  const { cols, charWidth, lineHeight, fontStack, ready } = metrics
   // The canvas is at least a windowful of rows tall, and grows to whatever the
   // regions reserve, so content that does not fit scrolls instead of vanishing.
   const viewportRows = useViewportRows(lineHeight)
   const rows = Math.max(viewportRows, reserved + footer + (border ? 2 : 0))
   const grid = useMemo<Metrics>(
-    () => ({ cols, rows, charWidth, lineHeight, fontSize }),
-    [cols, rows, charWidth, lineHeight, fontSize],
+    () => ({ cols, rows, charWidth, lineHeight, fontSize, fontStack }),
+    [cols, rows, charWidth, lineHeight, fontSize, fontStack],
   )
   const visible = awake.inTab && awake.onScreen
 
@@ -409,7 +410,7 @@ export default function RainScreen({
       style={{
         width: '100%',
         height: rows > 0 ? rows * lineHeight : undefined,
-        fontFamily: MONO,
+        fontFamily: `var(${GRID_FONT_VAR}, ${MONO})`,
         fontSize,
         lineHeight: `${lineHeight}px`,
         // The screen is a fixed box that repaints itself: keep its layout and
