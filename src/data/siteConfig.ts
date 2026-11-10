@@ -111,32 +111,30 @@ export const coolStuffScreen: ScreenContent = {
 
 export const articles: Article[] = [
   {
-    slug: "text-screen",
-    title: "my first blog lol",
+    slug: "opinons-on-ai",
+    title: "first blog lol",
     date: "2026-11-05",
     summary: "My first blog.",
     body: [
       "# Hello ",
-      "My name is James although you might know that or you might even know me in person.",
-      "I don't really have to much to say about my self I go to college at the University of Arkansas I am taking computer science. ( yes I know AI prob gonna replace us all (cs majors) at least I take showers )",
-      "I do love the act of programming and still code by hand ( ik crazy ) although I have been recently integrating AI into my workflow more in depth.",
-      "I have recently been dabbling in making my own tooling like a custom mcp server and terminal plugin for my objectively support editor nvim jk but in all seriousness though",
-      "AI has been needless to say controversial and so I just want to put my thoughts down on AI from the perspective of someone whomes entire industry has been altered permanently by this tech",
-      "starting off with my first take.",
-      "## open ai and anthropic are irrelevant and their products suck",
-      "this could be considered cope as I don't personally pay for claud code nor do i pay for open ai's whatever they are selling as a matter of fact i rage deleted my account.",
-      "for starters when I created my open ai account originally it was in my intro to engineering class in 2023, back then ai could barely write a for loop. And we were given the assignment to ask it some questions about a possible field of engineering we were thinking of heading into.",
-      "and then like Patrick when he pulled the string of the magic kaunt we were to listen to the wisdom it bespoke upon us freshman and talk about it with our classmates",
-      "i still remember the mediocre bullet point standard cookie cutter response. And generic writing that was entirely forgettable.",
-      "and while I no longer have those chats as I deleted my account. ( to which ill get into later ) at this point this was my first experience that i can remember with chat gpt",
-      "I remember continuing to use chatgpt for awhile and even purchased some api credits for an old school project in which i made an \"ai weather man\" ( a ~200 line python script )",
-      "in which i learned how to prompt engineer 4o into giving out a relatively speaking consistent json output that acted as a weatherman",
-      "",
-      "however it sucked at coding... like really sucked at coding. I remember my first time using chat gpt for coding. it was a school assignment in which we had to ask chat gpt to transpile some javescript to",
-      "typescript, it completely fucked it up. That want a very good first experience. And the mediocrity followed, i ask it something slightly complicated for example write something in vhdl or explain A,B, and C to me, it gets it wrong but in a sinister only kinda wrong way ( the worst kind of way ) and then it would gas light me. I couldn't take it seriously ",
-      "and that is reflected in the way i used it. Ask it joke questions try to get it to say things its not supposed to, ect ect.",
-      "but the breaking point for me was one that had me so annoyed so unreasonably angry that i ended up deleting my personal accouont.",
-      "## "
+      "My name is James although you might know that or you might even know me in person. Tbh I dont think many people are going to read this",
+      "a little about me I attend the University of Arkansas for computer science,",
+      "I have been programming sense my freshman year of high school.",
+      "anyways with the boring stuff out of the way... I want to talk about AI and my take on AI how i use it and what i think will happen to the industry that I would like to get a job in",
+      "fisrt and formost I'm not anti AI, far from it. I remember the first time I used what would technically be considered an \"AI\" today Google Deep Dream wayyy back in 2015",
+      "[image](placeholder)",
+      "as a matter of fact my profile pic is the output of a google deep dream neural network",
+      "now google deep dream is way different to the AI image models and text models we have today however, I state this because I have a LOT to say about the state of the AI industry",
+      "a industry in which has been entirely proped up by circular funding for so long we where talking about circular funding almost a year ago",
+      "as a matter of fact i was interviewed in the travaler about this and I said back then what everyone sees today.",
+      "that is the entire AI industry is a glorified ponzi scheme.",
+      "which sucks, and the way in which AI has been sold to the public as a tool that would replace everyone and that it would become sentiant and that super intelligence would come or whatever",
+      "and kill us all yada yada... basically its a bunch of bull shit. Sold to be people who low key have allegations cough cough sam, cough cough elon... ",
+      "and a guy who wants everyone to call him daddy... basically the worst blunt rotation of all time",
+      "so I dont blame people for being anti AI, as matter of fact I too think we should probably put a pause on data centers, and regulate like hell.",
+      "and I would go further I think that companies who have taken advantage of the system and those who have stolen the work of everyone on the planet",
+      "IE every AI company in America aught to be nationalized, Although that might get me on a list for saying that...",
+      ""
     ]
   }
 

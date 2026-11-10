@@ -1,0 +1,6 @@
+# Next.js virtual env / build artifacts (configurator tool)
+venv/
+__pycache__/
+*.pyc
+cfg
+*.tmp.*
