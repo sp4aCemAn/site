@@ -116,28 +116,12 @@ export const articles: Article[] = [
     date: "2026-11-05",
     summary: "My first blog.",
     body: [
-      "# Hello ",
-      "My name is James although you might know that or you might even know me in person. Tbh I dont think many people are going to read this",
-      "a little about me I attend the University of Arkansas for computer science,",
-      "I have been programming sense my freshman year of high school.",
-      "anyways with the boring stuff out of the way... I want to talk about AI and my take on AI how i use it and what i think will happen to the industry that I would like to get a job in",
-      "fisrt and formost I'm not anti AI, far from it. I remember the first time I used what would technically be considered an \"AI\" today Google Deep Dream wayyy back in 2015",
-      "[image](placeholder)",
-      "as a matter of fact my profile pic is the output of a google deep dream neural network",
-      "now google deep dream is way different to the AI image models and text models we have today however, I state this because I have a LOT to say about the state of the AI industry",
+      "# Hello",
+      "This is my first blog, and so ima get the introduction out of the way.\nA little about me I attend the University of Arkansas for computer science,\nand while ik\nI have been programming sense my freshman year of high school.\nanyways with the boring stuff out of the way... I want to talk about AI and my take on AI how i use it and what i think will happen to the industry that I would like to get a job in\nfisrt and formost I'm not anti AI, I think AI is a tool. I have complicated feelings about how its used in art. Although I think as it has come to programming,\nunfortunetly it has become another thing to incorperate into our toolbeelt.\nA tool that has become so shoved down our throats in fact if you dont use it it makes you look weird. to recruiters, and interviewers.\nI remember the first time I used what would technically be considered an \"AI\" today Google Deep Dream wayyy back in 2015\n[image](/image2.jpg)\nas a matter of fact my profile pic is the output of a google deep dream neural network.",
       "a industry in which has been entirely proped up by circular funding for so long we where talking about circular funding almost a year ago",
-      "as a matter of fact i was interviewed in the travaler about this and I said back then what everyone sees today.",
-      "that is the entire AI industry is a glorified ponzi scheme.",
-      "which sucks, and the way in which AI has been sold to the public as a tool that would replace everyone and that it would become sentiant and that super intelligence would come or whatever",
-      "and kill us all yada yada... basically its a bunch of bull shit. Sold to be people who low key have allegations cough cough sam, cough cough elon... ",
-      "and a guy who wants everyone to call him daddy... basically the worst blunt rotation of all time",
-      "so I dont blame people for being anti AI, as matter of fact I too think we should probably put a pause on data centers, and regulate like hell.",
-      "and I would go further I think that companies who have taken advantage of the system and those who have stolen the work of everyone on the planet",
-      "IE every AI company in America aught to be nationalized, Although that might get me on a list for saying that...",
-      ""
+      "one sees today.\nthat is the entire AI industry is a glorified ponzi scheme.\nwhich sucks, and the way in which AI has been sold to the public as a tool that would replace everyone and that it would become sentiant and that super intelligence would come or whatever\nand kill us all yada yada... basically its a bunch of bull shit. Sold to be people who low key have allegations cough cough sam, cough cough elon... \nand a guy who wants everyone to call him daddy... basically the worst blunt rotation of all time\nso I dont blame people for being anti AI, as matter of fact I too think we should probably put a pause on data centers, and regulate like hell.\nand I would go further I think that companies who have taken advantage of the system and those who have stolen the work of everyone on the planet\nIE every AI company in America aught to be nationalized, Although that might get me on a list for saying that..."
     ]
   }
-
 ];
 
 /** Boxes for the news screen, newest first. */
