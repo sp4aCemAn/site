@@ -56,10 +56,12 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
-          # Automatically inject basePath in your Next.js configuration file and disable
-          # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
-          #
-          # You may remove this line if you want to manage the configuration yourself.
+          # The site is served from the root of the custom domain (sp4aceman.com),
+          # not from /<repo>, so basePath must stay empty. Without this,
+          # configure-pages derives it from the repository name (`/site`) and
+          # Next.js prefixes every chunk URL with it — the HTML loads, but every
+          # script 404s at /site/_next/... while the files live at /_next/...
+          base_path: ""
           static_site_generator: next
       - name: Restore cache
         uses: actions/cache@v4

@@ -39,7 +39,7 @@ export interface Article {
 export const site = {
   name: "spaceman",
   tagline: "coolest man on earth B)",
-  description: "my personal website",
+  description: " ",
   navLinks: [
     { label: "Home", href: "/" },
     { label: "News", href: "/news" },
